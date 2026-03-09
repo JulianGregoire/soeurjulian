@@ -173,13 +173,23 @@
 
                 <div class="booking-action text-center">
                     <p>Pour réserver votre créneau, veuillez choisir un horaire ci-dessous :</p>
-                    <!-- Calendly inline widget begin -->
-                    <div class="calendly-inline-widget"
-                        data-url="https://calendly.com/alexandra-gregoire-psy/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=2a2a2a&locale=fr"
-                        style="min-width:320px;height:700px;"></div>
+                    <div id="calendly-widget-container" style="min-width:320px;height:700px;"></div>
                     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"
                         async></script>
-                    <!-- Calendly inline widget end -->
+                    <script type="text/javascript">
+                        function initCalendly() {
+                            if (window.Calendly) {
+                                Calendly.initInlineWidget({
+                                    url: 'https://calendly.com/alexandra-gregoire-psy/30min?locale=fr&hide_event_type_details=1&hide_gdpr_banner=1&primary_color=2a2a2a',
+                                    parentElement: document.getElementById('calendly-widget-container'),
+                                    embed_locale: 'fr'
+                                });
+                            } else {
+                                setTimeout(initCalendly, 100);
+                            }
+                        }
+                        window.addEventListener('load', initCalendly);
+                    </script>
                 </div>
             </div>
         </div>
